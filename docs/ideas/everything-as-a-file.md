@@ -1,8 +1,16 @@
 # Everything as a file
 
-ADEF would treat each file as a callable node. Writing `|filename.ext` invokes the exact file named, including its extension. ADEF would infer a node’s parameters from the `$name` occurrences in its body recursivelly. Repeated uses of the same name refer to the same input. This requires no parameter header or front matter.
+ADEF would treat each file as a callable node. Writing `|filename.ext` invokes the exact file named. 
 
 ADEF uses *node* because SQL queries, data files, prompts, and compositions all share the same way of being called by filename.
+
+- ADEF would infer a node’s parameters from the `$name` occurrences in its body recursivelly. Repeated uses of the same name refer to the same input. 
+- Node's minimalistic header can have optional fields:
+  - description
+  - materialization (table/view name, ..., mode: overwrite, append, SCD2, incremental, ...)
+  - output schema
+
+Node types:
 
 - **SQL files.** A node can contain standard SQL, optionally parameterized. For example, `orders_by_status.sql` could contain `SELECT * FROM orders WHERE status = $status`. Its caller supplies `status`.
 - **Data files.** Calling a file such as `orders.csv` returns its rows as a table. Its columns follow the definitions in the shared column repository, and their values must satisfy the corresponding constraints. [Shared column repository](shared-column-repository.md)
@@ -10,6 +18,10 @@ ADEF uses *node* because SQL queries, data files, prompts, and compositions all 
 - **Composition files.** A composition calls other files and binds their inputs. The composition is itself a callable node, so a caller can reuse the whole operation by filename.
 
 The node files can be located anywhere in the reachable files system. For brief notation, the default folder is to be specified.
+
+### Prompt nodes
+
+The prompt describes transformation and the framework generates the code based on the context. The generation have to be stored so they can be reused when the same context is identified.
 
 ## Counting orders by status
 
@@ -26,7 +38,7 @@ Calling `|count_orders_by_status.comp status='paid'` supplies a literal. Inside 
 
 Jinja could optionally generate additional SQL, for example a repeated set of select expressions. Input inference and binding would work independently of Jinja.
 
-## Forwarding inputs through a composition
+## Forwarding inputs through a composition (proposition)
 
 When only one nested call exposes a required input named `input_table`, the enclosing composition inherits that parameter. The same rule applies at each level, so the outer caller can supply the table once without each intermediate node having to forward it explicitly.
 

@@ -2,6 +2,11 @@
 
 ADEF would declare relationships between columns defined in the [shared column repository](shared-column-repository.md). Each declaration describes a business fact and the constraints that apply to it. Teams can record that meaning before deciding how to group the columns into tables or other structures.
 
+Focusing on actuall columns and binding their relationships with business meaning immediately gives practical implications:
+
+- data testing
+- users and agents navigate data with understanding.
+
 ## One concept, different constraints
 
 A relationship names a business fact, identifies the columns that participate, and can specify constraints such as how many values may participate on each side.
