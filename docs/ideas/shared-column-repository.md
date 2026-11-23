@@ -21,3 +21,7 @@ order_summary = [customer], order_id, order_date, [payment], status
 ```
 
 The summary includes the columns selected by `customer` and `payment` along with the three columns listed directly. A node can use `order_summary` as its output schema or define its own output schema by combining predefined schemas and repository columns in the same way. Whether a node’s output schema can be determined dynamically remains open.
+
+## Exceptions
+
+Only the upsteam-most layer can ignore centralized naming and follow sources' column and table names.
