@@ -1,0 +1,2 @@
+Document how tables should be named. Probably something following shema naming in column repository but also mapping from ontology, as ADEF is ontology-driven.
+This depends on `ontology-driven.md` task.
