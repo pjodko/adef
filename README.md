@@ -40,4 +40,5 @@ Planned:
 - [Shared column repository](docs/ideas/shared-column-repository.md)
 - [Column relationships](docs/ideas/column-relationships.md)
 - [Everything as a file](docs/ideas/everything-as-a-file.md)
+- [Source substitution for node tests](docs/ideas/source-substitution.md)
 - [Planned architectures and data modelling](docs/ideas/architectures-and-data-modelling.md)
